@@ -8,7 +8,11 @@ export const getGoals = (req, res) => {
 //@desc Post Goal
 //@route POST /api/goal
 //@access Private
-export const postGoal = (req, res) => {
+export const setGoal = (req, res) => {
+  if (!req.body.etxt) {
+    res.status(400);
+    throw new Error("please add a text");
+  }
   res.status(200).json({ post: `post` });
 };
 

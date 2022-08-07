@@ -1,13 +1,13 @@
 import { Router } from "express";
 import {
-  postGoal,
+  setGoal,
   updateGoal,
   getGoals,
   deleteGoal,
 } from "../controllers/goalControllers.js";
 const router = Router();
 
-router.route("/").get(getGoals).post(postGoal);
+router.route("/").get(getGoals).post(setGoal);
 router.route("/:id").put(updateGoal).delete(deleteGoal);
 
 export default router;
