@@ -1,31 +1,27 @@
 //@desc Set Goal
 //@route GET /api/goal
 //@access Private
-export const getGoals = (req, res) => {
+export const getGoals = async (req, res) => {
   res.status(200).json({ get: `get` });
 };
 
 //@desc Post Goal
 //@route POST /api/goal
 //@access Private
-export const setGoal = (req, res) => {
-  if (!req.body.etxt) {
-    res.status(400);
-    throw new Error("please add a text");
-  }
+export const setGoal = async (req, res) => {
   res.status(200).json({ post: `post` });
 };
 
 //@desc Update Goal
 //@route PUT /api/goal/:id
 //@access Private
-export const updateGoal = (req, res) => {
+export const updateGoal = async (req, res) => {
   res.status(200).json({ put: `put ${req.params.id}` });
 };
 
 //@desc Delete Goal
 //@route DELETE /api/goal
 //@access Private
-export const deleteGoal = (req, res) => {
+export const deleteGoal = async (req, res) => {
   res.status(200).json({ delete: `delete ${req.params.id}` });
 };

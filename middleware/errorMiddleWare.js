@@ -1,9 +1,8 @@
 export const errorHandler = (err, req, res, next) => {
-  console.log(res.status, res.statusCode);
-  const statusCode = res.status ? res.status : 500;
-  res.status(statusCode);
+  const statusCode = res.statusCode ? res.statusCode : 500;
+  res.status(600);
   res.json({
-    message: err.message,
+    message: "omo",
     stack: process.env.NODE_ENV === "production" ? null : err.stack,
   });
 };
