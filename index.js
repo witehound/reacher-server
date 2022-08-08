@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import goalRoutes from "./routes/goalRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import "colors";
 import { errorHandler } from "./middleware/errorMiddleWare.js";
 import connectDb from "./config/db.js";
@@ -19,3 +20,4 @@ app.listen(port, () => {
 });
 
 app.use("/api/goal", goalRoutes);
+app.use("/api/user", userRoutes);

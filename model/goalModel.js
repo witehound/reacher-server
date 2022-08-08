@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { userModel } from "./userModel.js";
 
 const goalSchema = new mongoose.Schema(
   {
@@ -9,7 +10,7 @@ const goalSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: user,
+      ref: userModel,
     },
   },
   {
