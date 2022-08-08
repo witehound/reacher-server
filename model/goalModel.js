@@ -6,6 +6,11 @@ const goalSchema = new mongoose.Schema(
       type: String,
       required: [true, "please adda atext"],
     },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: user,
+    },
   },
   {
     timestamps: true,
