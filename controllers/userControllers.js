@@ -11,7 +11,7 @@ export const createUser = asyncHandler(async (req, res) => {
   if (!name || !password || !email) {
     return res.status(400).json({ message: `add all fields` });
   }
-  const user = await userModel.findOne({ email });
+  let user = await userModel.findOne({ email });
   if (user) {
     return res.status(400).json({ message: `user already exist` });
   }
@@ -21,11 +21,12 @@ export const createUser = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, saltRound);
 
   //createuser
-  const newUser = await userModel.create({
+  user = new userModel({
     name,
     password: hashedPassword,
     email,
   });
+  const newUser = await user.save();
   if (newUser) {
     return res.status(201).json({
       _id: newUser.id,
@@ -38,7 +39,7 @@ export const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-//@desc Register a user
+//@desc Login a user
 //@route Post /api/user
 //@access Public
 export const loginUser = asyncHandler(async (req, res) => {
