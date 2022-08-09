@@ -66,5 +66,11 @@ export const loginUser = asyncHandler(async (req, res) => {
 //@route get /api/user
 //@access Private
 export const getMe = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `New user susccesfully created.` });
+  const { _id, name, email } = await userModel.findById(req.user.id);
+
+  res.status(200).json({
+    id: _id,
+    name,
+    email,
+  });
 });
