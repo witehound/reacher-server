@@ -31,7 +31,7 @@ export const createUser = asyncHandler(async (req, res) => {
       _id: newUser.id,
       name: newUser.name,
       email: newUser.email,
-      token: generateToken(user._id),
+      token: generateToken(user.id),
     });
   } else {
     return res.status(400).json({ message: `Failed to create a new user.` });
@@ -58,20 +58,13 @@ export const loginUser = asyncHandler(async (req, res) => {
     _id: user.id,
     name: user.name,
     email: user.email,
-    token: generateToken(user._id),
+    token: generateToken(user.id),
   });
 });
 
 //@desc Get a user
 //@route get /api/user
-//@access Public
+//@access Private
 export const getMe = asyncHandler(async (req, res) => {
-  // const { name, password, email } = req.body;
-  // const newUser = {
-  //   name,
-  //   password,
-  //   email,
-  // };
-  // await userModel.create(newUser);
   res.status(200).json({ message: `New user susccesfully created.` });
 });
