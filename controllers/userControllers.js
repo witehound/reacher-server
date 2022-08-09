@@ -1,7 +1,7 @@
 import { userModel } from "../model/userModel.js";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import asyncHandler from "express-async-handler";
+import { generateToken } from "../helper/jwt.js";
 
 //@desc Register a user
 //@route Post /api/user
@@ -31,6 +31,7 @@ export const createUser = asyncHandler(async (req, res) => {
       _id: newUser.id,
       name: newUser.name,
       email: newUser.email,
+      token: generateToken(user._id),
     });
   } else {
     return res.status(400).json({ message: `Failed to create a new user.` });
@@ -57,6 +58,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     _id: user.id,
     name: user.name,
     email: user.email,
+    token: generateToken(user._id),
   });
 });
 
