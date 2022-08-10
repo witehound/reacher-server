@@ -5,9 +5,10 @@ import {
   getGoals,
   deleteGoal,
 } from "../controllers/goalControllers.js";
+import { verify } from "../middleware/auth.js";
 const router = Router();
 
-router.route("/").get(getGoals).post(setGoal);
-router.route("/:id").put(updateGoal).delete(deleteGoal);
+router.route("/").get(verify, getGoals).post(verify, setGoal);
+router.route("/:id").put(verify, updateGoal).delete(verify, deleteGoal);
 
 export default router;
