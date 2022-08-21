@@ -5,6 +5,7 @@ import userRoutes from "./routes/userRoutes.js";
 import "colors";
 import { errorHandler } from "./middleware/errorMiddleWare.js";
 import connectDb from "./config/db.js";
+import cors from "cors";
 
 const app = express();
 connectDb();
@@ -14,6 +15,7 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(errorHandler);
+app.use(cors());
 
 app.listen(port, () => {
   console.log(`server live on port ${port}`);
